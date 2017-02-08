@@ -1,26 +1,36 @@
-<properties
-	pageTitle="Azure Monitor metrics - supported metrics per resource type  | Microsoft Azure"
-	description="List of metrics available for each resource type with Azure Monitor."
-	authors="johnkemnetz"
-	manager="rboucher"
-	editor=""
-	services="monitoring-and-diagnostics"
-	documentationCenter="monitoring-and-diagnostics"/>
+---
+title: Azure Monitor metrics - supported metrics per resource type  | Microsoft Docs
+description: List of metrics available for each resource type with Azure Monitor.
+author: johnkemnetz
+manager: rboucher
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-	ms.service="monitoring-and-diagnostics"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/26/2016"
-	ms.author="johnkem"/>
+ms.assetid: 63d4ac65-1688-40d1-85c8-7cd408285b0f
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 12/12/2016
+ms.author: johnkem
 
+---
 # Supported metrics with Azure Monitor
-
 Azure Monitor provides several ways to interact with metrics, including charting them in the portal, accessing them through the REST API, or querying them using PowerShell or CLI. Below is a complete list of all metrics currently available with Azure Monitor's metric pipeline.
 
-> [AZURE.NOTE] Other metrics may be available in the portal or using legacy APIs. This list only includes public preview metrics available using the public preview of the consolidated Azure Monitor metric pipeline.
+> [!NOTE]
+> Other metrics may be available in the portal or using legacy APIs. This list only includes public preview metrics available using the public preview of the consolidated Azure Monitor metric pipeline.
+> 
+> 
+
+## Microsoft.AnalysisServices/servers
+
+|Metric|Metric Display Name|Unit|Aggregation Type|Description|
+|---|---|---|---|---|
+|qpu_metric|QPU|Count|Average|QPU. Range 0-100 for S1, 0-200 for S2 and 0-400 for S4|
+|memory_metric|Memory|Bytes|Average|Memory. Range 0-25 GB for S1, 0-50 GB for S2 and 0-100 GB for S4|
 
 ## Microsoft.Batch/batchAccounts
 
@@ -74,7 +84,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands0|Gets (Shard 0)|Count|Total||
 |setcommands0|Sets (Shard 0)|Count|Total||
 |evictedkeys0|Evicted Keys (Shard 0)|Count|Total||
-|totalkeys0|Total Keys (Node 0)|Count|Maximum||
+|totalkeys0|Total Keys (Shard 0)|Count|Maximum||
 |expiredkeys0|Expired Keys (Shard 0)|Count|Total||
 |usedmemory0|Used Memory (Shard 0)|Bytes|Maximum||
 |usedmemoryRss0|Used Memory RSS (Shard 0)|Bytes|Maximum||
@@ -89,7 +99,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands1|Gets (Shard 1)|Count|Total||
 |setcommands1|Sets (Shard 1)|Count|Total||
 |evictedkeys1|Evicted Keys (Shard 1)|Count|Total||
-|totalkeys1|Total Keys (Node 1)|Count|Maximum||
+|totalkeys1|Total Keys (Shard 1)|Count|Maximum||
 |expiredkeys1|Expired Keys (Shard 1)|Count|Total||
 |usedmemory1|Used Memory (Shard 1)|Bytes|Maximum||
 |usedmemoryRss1|Used Memory RSS (Shard 1)|Bytes|Maximum||
@@ -104,7 +114,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands2|Gets (Shard 2)|Count|Total||
 |setcommands2|Sets (Shard 2)|Count|Total||
 |evictedkeys2|Evicted Keys (Shard 2)|Count|Total||
-|totalkeys2|Total Keys (Node 2)|Count|Maximum||
+|totalkeys2|Total Keys (Shard 2)|Count|Maximum||
 |expiredkeys2|Expired Keys (Shard 2)|Count|Total||
 |usedmemory2|Used Memory (Shard 2)|Bytes|Maximum||
 |usedmemoryRss2|Used Memory RSS (Shard 2)|Bytes|Maximum||
@@ -119,7 +129,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands3|Gets (Shard 3)|Count|Total||
 |setcommands3|Sets (Shard 3)|Count|Total||
 |evictedkeys3|Evicted Keys (Shard 3)|Count|Total||
-|totalkeys3|Total Keys (Node 3)|Count|Maximum||
+|totalkeys3|Total Keys (Shard 3)|Count|Maximum||
 |expiredkeys3|Expired Keys (Shard 3)|Count|Total||
 |usedmemory3|Used Memory (Shard 3)|Bytes|Maximum||
 |usedmemoryRss3|Used Memory RSS (Shard 3)|Bytes|Maximum||
@@ -134,7 +144,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands4|Gets (Shard 4)|Count|Total||
 |setcommands4|Sets (Shard 4)|Count|Total||
 |evictedkeys4|Evicted Keys (Shard 4)|Count|Total||
-|totalkeys4|Total Keys (Node 4)|Count|Maximum||
+|totalkeys4|Total Keys (Shard 4)|Count|Maximum||
 |expiredkeys4|Expired Keys (Shard 4)|Count|Total||
 |usedmemory4|Used Memory (Shard 4)|Bytes|Maximum||
 |usedmemoryRss4|Used Memory RSS (Shard 4)|Bytes|Maximum||
@@ -149,7 +159,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands5|Gets (Shard 5)|Count|Total||
 |setcommands5|Sets (Shard 5)|Count|Total||
 |evictedkeys5|Evicted Keys (Shard 5)|Count|Total||
-|totalkeys5|Total Keys (Node 5)|Count|Maximum||
+|totalkeys5|Total Keys (Shard 5)|Count|Maximum||
 |expiredkeys5|Expired Keys (Shard 5)|Count|Total||
 |usedmemory5|Used Memory (Shard 5)|Bytes|Maximum||
 |usedmemoryRss5|Used Memory RSS (Shard 5)|Bytes|Maximum||
@@ -164,7 +174,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands6|Gets (Shard 6)|Count|Total||
 |setcommands6|Sets (Shard 6)|Count|Total||
 |evictedkeys6|Evicted Keys (Shard 6)|Count|Total||
-|totalkeys6|Total Keys (Node 6)|Count|Maximum||
+|totalkeys6|Total Keys (Shard 6)|Count|Maximum||
 |expiredkeys6|Expired Keys (Shard 6)|Count|Total||
 |usedmemory6|Used Memory (Shard 6)|Bytes|Maximum||
 |usedmemoryRss6|Used Memory RSS (Shard 6)|Bytes|Maximum||
@@ -179,7 +189,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands7|Gets (Shard 7)|Count|Total||
 |setcommands7|Sets (Shard 7)|Count|Total||
 |evictedkeys7|Evicted Keys (Shard 7)|Count|Total||
-|totalkeys7|Total Keys (Node 7)|Count|Maximum||
+|totalkeys7|Total Keys (Shard 7)|Count|Maximum||
 |expiredkeys7|Expired Keys (Shard 7)|Count|Total||
 |usedmemory7|Used Memory (Shard 7)|Bytes|Maximum||
 |usedmemoryRss7|Used Memory RSS (Shard 7)|Bytes|Maximum||
@@ -194,7 +204,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands8|Gets (Shard 8)|Count|Total||
 |setcommands8|Sets (Shard 8)|Count|Total||
 |evictedkeys8|Evicted Keys (Shard 8)|Count|Total||
-|totalkeys8|Total Keys (Node 8)|Count|Maximum||
+|totalkeys8|Total Keys (Shard 8)|Count|Maximum||
 |expiredkeys8|Expired Keys (Shard 8)|Count|Total||
 |usedmemory8|Used Memory (Shard 8)|Bytes|Maximum||
 |usedmemoryRss8|Used Memory RSS (Shard 8)|Bytes|Maximum||
@@ -209,7 +219,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |getcommands9|Gets (Shard 9)|Count|Total||
 |setcommands9|Sets (Shard 9)|Count|Total||
 |evictedkeys9|Evicted Keys (Shard 9)|Count|Total||
-|totalkeys9|Total Keys (Node 9)|Count|Maximum||
+|totalkeys9|Total Keys (Shard 9)|Count|Maximum||
 |expiredkeys9|Expired Keys (Shard 9)|Count|Total||
 |usedmemory9|Used Memory (Shard 9)|Bytes|Maximum||
 |usedmemoryRss9|Used Memory RSS (Shard 9)|Bytes|Maximum||
@@ -222,8 +232,15 @@ Azure Monitor provides several ways to interact with metrics, including charting
 
 |Metric|Metric Display Name|Unit|Aggregation Type|Description|
 |---|---|---|---|---|
-|NumberOfCalls|Total number of API calls|Count|Total|Total number of API calls.|
-|NumberOfFailedCalls|Total number of failed API calls|Count|Total|Total number of failed API calls.|
+|TotalCalls|Total Calls|Count|Total|Total number of calls.|
+|SuccessfulCalls|Successful Calls|Count|Total|Number of successful calls.|
+|TotalErrors|Total Errors|Count|Total|Total number of calls with error response (HTTP response code 4xx or 5xx).|
+|BlockedCalls|Blocked Calls|Count|Total|Number of calls that exceeded rate or quota limit.|
+|ServerErrors|Server Errors|Count|Total|Number of calls with service internal error (HTTP response code 5xx).|
+|ClientErrors|Client Errors|Count|Total|Number of calls with client side error (HTTP response code 4xx).|
+|DataIn|Data In|Bytes|Total|Size of incoming data in bytes.|
+|DataOut|Data Out|Bytes|Total|Size of outgoing data in bytes.|
+|Latency|Latency|MilliSeconds|Average|Latency in milliseconds.|
 
 ## Microsoft.Compute/virtualMachines
 
@@ -262,16 +279,23 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |Disk Write Operations/Sec|Disk Write Operations/Sec|CountPerSecond|Average|Disk Write IOPS|
 
 ## Microsoft.Devices/IotHubs
-
-|Metric|Metric Display Name|Unit|Aggregation Type|Description|
-|---|---|---|---|---|
-|d2c.telemetry.ingress.allProtocol|Telemetry Message Send Attempts|Count|Total|Number of Device to Cloud telemetry messages attempted to be sent to your IoT hub|
-|d2c.telemetry.ingress.success|Telemetry Messages Sent|Count|Total|Number of Device to Cloud telemetry messages sent successfully to your IoT hub|
-|c2d.commands.egress.complete.success|Commands Completed|Count|Total|Number of Cloud to Device commands completed successfully by the device|
-|c2d.commands.egress.abandon.success|Commands Abandoned|Count|Total|Number of Cloud to Device commands abandoned by the device|
-|c2d.commands.egress.reject.success|Commands Rejected|Count|Total|Number of Cloud to Device commands rejected by the device|
-|devices.totalDevices|Total Devices|Count|Total|Number of devices registered to your IoT hub|
-|devices.connectedDevices.allProtocol|Connected Devices|Count|Total|Number of devices connected to your IoT hub|
+| Metric | Metric Display Name | Unit | Aggregation Type | Description |
+| --- | --- | --- | --- | --- |
+| d2c.telemetry.ingress.allProtocol |Telemetry Message Send Attempts |Count |Total |Number of device-to-cloud telemetry messages attempted to be sent to your IoT hub |
+| d2c.telemetry.ingress.success |Telemetry Messages Sent |Count |Total |Number of device-to-cloud telemetry messages sent successfully to your IoT hub |
+| d2c.telemetry.egress.success | Telemetry messages delivered | Count | Total | The count of all successful writes to an endpoint |
+| d2c.telemetry.egress.invalid | Invalid telemetry message delivery attempts | Count | Total | The count of messages not delivered due to incompatibility with the endpoint |
+| d2c.telemetry.egress.dropped | Dropped telemetry messages | Count | Total | The count of messages dropped because an endpoint was unhealthy |
+| d2c.telemetry.egress.fallback | Telemetry messages matching fallback condition | Count | Total | The count of messages matching the fallback route |
+| d2c.telemetry.egress.orphaned | Orphaned telemetry messages | Count | Total | The count of messages not matching any routes including the fallback route |
+| d2c.endpoints.latency.eventHubs | Message latency for Event Hub endpoints | Milliseconds | Average | The average, min, and max latency between message ingress to the IoT hub and message ingress into an Event Hub endpoint, in milliseconds |
+| d2c.endpoints.latency.serviceBusQueues | Message latency for Service Bus Queue endpoints | Milliseconds | Average | The average, min, and max latency between message ingress to the IoT hub and message ingress into a Service Bus Queue endpoint, in milliseconds |
+| d2c.endpoints.latency.serviceBusTopics | Message latency for Service Bus Topic endpoints | Milliseconds | Average | The average, min, and max latency between message ingress to the IoT hub and message ingress into a Service Bus Topic endpoint, in milliseconds |
+| c2d.commands.egress.complete.success |Commands Completed |Count |Total |Number of Cloud to Device commands completed successfully by the device |
+| c2d.commands.egress.abandon.success |Commands Abandoned |Count |Total |Number of Cloud to Device commands abandoned by the device |
+| c2d.commands.egress.reject.success |Commands Rejected |Count |Total |Number of Cloud to Device commands rejected by the device |
+| devices.totalDevices |Total Devices |Count |Total |Number of devices registered to your IoT hub |
+| devices.connectedDevices.allProtocol |Connected Devices |Count |Total |Number of devices connected to your IoT hub |
 
 ## Microsoft.EventHub/namespaces
 
@@ -414,7 +438,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |BytesReceived|Data In|Bytes|Total|Data In|
 |BytesSent|Data Out|Bytes|Total|Data Out|
 
-## Microsoft.Web/sites
+## Microsoft.Web/sites (including Azure Functions)
 
 |Metric|Metric Display Name|Unit|Aggregation Type|Description|
 |---|---|---|---|---|
@@ -422,6 +446,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |Requests|Requests|Count|Total|Requests|
 |BytesReceived|Data In|Bytes|Total|Data In|
 |BytesSent|Data Out|Bytes|Total|Data Out|
+|Http101|Http 101|Count|Total|Http 101|
 |Http2xx|Http 2xx|Count|Total|Http 2xx|
 |Http3xx|Http 3xx|Count|Total|Http 3xx|
 |Http401|Http 401|Count|Total|Http 401|
@@ -431,8 +456,10 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |Http4xx|Http 4xx|Count|Total|Http 4xx|
 |Http5xx|Http Server Errors|Count|Total|Http Server Errors|
 |MemoryWorkingSet|Memory working set|Bytes|Total|Memory working set|
-|AverageMemoryWorkingSet|Average memory working set|Bytes|Average|Average memory working set|
+|AverageMemoryWorkingSet|Average memory working set|Bytes|Total|Average memory working set|
 |AverageResponseTime|Average Response Time|Seconds|Average|Average Response Time|
+|FunctionExecutionUnits|Function Execution Units|Count|Average|Function Execution Units|
+|FunctionExecutionCount|Function Execution Count|Count|Average|Function Execution Count|
 
 ## Microsoft.Web/sites/slots
 
@@ -442,6 +469,7 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |Requests|Requests|Count|Total|Requests|
 |BytesReceived|Data In|Bytes|Total|Data In|
 |BytesSent|Data Out|Bytes|Total|Data Out|
+|Http101|Http 101|Count|Total|Http 101|
 |Http2xx|Http 2xx|Count|Total|Http 2xx|
 |Http3xx|Http 3xx|Count|Total|Http 3xx|
 |Http401|Http 401|Count|Total|Http 401|
@@ -451,11 +479,13 @@ Azure Monitor provides several ways to interact with metrics, including charting
 |Http4xx|Http 4xx|Count|Total|Http 4xx|
 |Http5xx|Http Server Errors|Count|Total|Http Server Errors|
 |MemoryWorkingSet|Memory working set|Bytes|Total|Memory working set|
-|AverageMemoryWorkingSet|Average memory working set|Bytes|Average|Average memory working set|
+|AverageMemoryWorkingSet|Average memory working set|Bytes|Total|Average memory working set|
 |AverageResponseTime|Average Response Time|Seconds|Average|Average Response Time|
+|FunctionExecutionUnits|Function Execution Units|Count|Average|Function Execution Units|
+|FunctionExecutionCount|Function Execution Count|Count|Average|Function Execution Count|
 
 ## Next steps
+* [Read about metrics in Azure Monitor](monitoring-overview.md#monitoring-sources)
+* [Create alerts on metrics](insights-receive-alert-notifications.md)
+* [Export metrics to storage, Event Hub, or Log Analytics](monitoring-overview-of-diagnostic-logs.md)
 
-- [Read about metrics in Azure Monitor](./monitoring-overview.md#monitoring-sources)
-- [Create alerts on metrics](./insights-receive-alert-notifications.md)
-- [Export metrics to storage, Event Hub, or Log Analytics](./monitoring-overview-of-diagnostic-logs.md)

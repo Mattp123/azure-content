@@ -1,21 +1,21 @@
-<properties
-    pageTitle="Testing Traffic Manager Settings | Microsoft Azure"
-    description="This article will help you test Traffic Manager settings"
-    services="traffic-manager"
-    documentationCenter=""
-    authors="sdwheeler"
-    manager="carmonm"
-    editor=""
-/>
-<tags
-    ms.service="traffic-manager"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="10/11/2016"
-    ms.author="sewhee"
-/>
+---
+title: Testing Traffic Manager Settings | Microsoft Docs
+description: This article will help you test Traffic Manager settings
+services: traffic-manager
+documentationcenter: ''
+author: kumudd
+manager: timlt
+editor: ''
+
+ms.assetid: 2180b640-596e-4fb2-be59-23a38d606d12
+ms.service: traffic-manager
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/11/2016
+ms.author: kumud
+---
 
 # Test your Traffic Manager settings
 
@@ -39,8 +39,8 @@ The following examples help you test your Traffic Manager profile.
 
     A typical result shows the following information:
 
-    * The DNS name and IP address of the DNS server being accessed to resolve this Traffic Manager domain name.
-    * The Traffic Manager domain name you typed on the command line after "nslookup" and the IP address to which the Traffic Manager domain resolves. The second IP address is the important one to check. It should match a public virtual IP (VIP) address for one of the cloud services or websites in the Traffic Manager profile you are testing.
+    + The DNS name and IP address of the DNS server being accessed to resolve this Traffic Manager domain name.
+    + The Traffic Manager domain name you typed on the command line after "nslookup" and the IP address to which the Traffic Manager domain resolves. The second IP address is the important one to check. It should match a public virtual IP (VIP) address for one of the cloud services or websites in the Traffic Manager profile you are testing.
 
 ## How to test the failover traffic routing method
 
@@ -71,7 +71,3 @@ Alternatively, there are free web-based DNS lookup and dig services available. S
 * [About Traffic Manager traffic routing methods](traffic-manager-routing-methods.md)
 * [Traffic Manager performance considerations](traffic-manager-performance-considerations.md)
 * [Troubleshooting Traffic Manager degraded state](traffic-manager-troubleshooting-degraded.md)
-
-
-
-

@@ -1,50 +1,46 @@
-<properties
-	pageTitle="Subscription and Accounts Guidelines | Microsoft Azure"
-	description="Learn about the key design and implementation guidelines for subscriptions and accounts on Azure."
-	documentationCenter=""
-	services="virtual-machines-linux"
-	authors="iainfoulds"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+---
+title: Subscription and account for Linux VMs in Azure | Microsoft Docs
+description: Learn about the key design and implementation guidelines for subscriptions and accounts on Azure.
+documentationcenter: ''
+services: virtual-machines-linux
+author: iainfoulds
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/08/2016"
-	ms.author="iainfou"/>
+ms.assetid: 19343826-7eef-42a1-98be-4ec65b0f377a
+ms.service: virtual-machines-linux
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.topic: article
+ms.date: 12/16/2016
+ms.author: iainfou
 
-# Subscription and accounts guidelines
-
-[AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)] 
+---
+# Azure subscription and accounts guidelines
+[!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
 This article focuses on understanding how to approach subscription and account management as your environment and user base grows.
 
-
 ## Implementation guidelines for subscriptions and accounts
-
 Decisions:
 
-- What set of subscriptions and accounts do you need to host your IT workload or infrastructure?
-- How to break down the hierarchy to fit your organization?
+* What set of subscriptions and accounts do you need to host your IT workload or infrastructure?
+* How to break down the hierarchy to fit your organization?
 
 Tasks:
 
-- Define your logical organization hierarchy as you would like to manage it from a subscription level.
-- To match this logical hierarchy, define the accounts required and subscriptions under each account.
-- Create the set of subscriptions and accounts using your naming convention.
-
+* Define your logical organization hierarchy as you would like to manage it from a subscription level.
+* To match this logical hierarchy, define the accounts required and subscriptions under each account.
+* Create the set of subscriptions and accounts using your naming convention.
 
 ## Subscriptions and accounts
-
 To work with Azure, you need one or more Azure subscriptions. Resources like virtual machines (VMs) or virtual networks exist in of those subscriptions.
 
-- Enterprise customers typically have an Enterprise Enrollment, which is the top-most resource in the hierarchy, and is associated to one or more accounts.
-- For consumers and customers without an Enterprise Enrollment, the top-most resource is the account.
-- Subscriptions are associated to accounts, and there can be one or more subscriptions per account. Azure records billing information at the subscription level.
+* Enterprise customers typically have an Enterprise Enrollment, which is the top-most resource in the hierarchy, and is associated to one or more accounts.
+* For consumers and customers without an Enterprise Enrollment, the top-most resource is the account.
+* Subscriptions are associated to accounts, and there can be one or more subscriptions per account. Azure records billing information at the subscription level.
 
 Due to the limit of two hierarchy levels on the Account/Subscription relationship, it is important to align the naming convention of accounts and subscriptions to the billing needs. For instance, if a global company uses Azure, they might choose to have one account per region, and have subscriptions managed at the region level:
 
@@ -58,13 +54,12 @@ If a region decides to have more than one subscription associated to a particula
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-The organization could look like the following:
+The organization could look like the following example:
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 
 We provide detailed billing via a downloadable file for a single account, or for all accounts in an enterprise agreement.
 
-
 ## Next steps
+[!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-[AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)] 

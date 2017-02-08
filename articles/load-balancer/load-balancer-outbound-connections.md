@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Understanding outbound connections in Azure | Microsoft Azure "
-   description="This article explains how Azure enables VMs to communicate with public Internet services."
-   services="load-balancer"
-   documentationCenter="na"
-   authors="sdwheeler"
-   manager="carmonm"
-   editor=""
-/>
-<tags
-   ms.service="load-balancer"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/31/2016"
-   ms.author="sewhee"
-/>
+---
+title: Understanding outbound connections in Azure | Microsoft Docs
+description: This article explains how Azure enables VMs to communicate with public Internet services.
+services: load-balancer
+documentationcenter: na
+author: kumudd
+manager: timlt
+editor: ''
+
+ms.assetid: 5f666f2a-3a63-405a-abcd-b2e34d40e001
+ms.service: load-balancer
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/31/2016
+ms.author: kumud
+---
 
 # Understanding outbound connections in Azure
 
@@ -23,11 +23,11 @@ A Virtual Machine (VM) in Azure can communicate with endpoints outside of Azure 
 
 Azure provides three different methods to achieve outbound connectivity. Each method has its own capabilities and constraints. Review each method carefully to choose which one meets your needs.
 
-|Scenario|Method|Note|
-|---|---|---|
-|Standalone VM (no load balancer, no Instance Level Public IP address)|Default SNAT|Azure associates a public IP address for SNAT|
-|Load-balanced VM (no Instance Level Public IP address on VM)|SNAT using the load balancer|Azure uses a public IP address of the Load Balancer for SNAT|
-|VM with Instance Level Public IP address (with or without load balancer)|SNAT is not used|Azure uses the public IP assigned to the VM|
+| Scenario | Method | Note |
+| --- | --- | --- |
+| Standalone VM (no load balancer, no Instance Level Public IP address) |Default SNAT |Azure associates a public IP address for SNAT |
+| Load-balanced VM (no Instance Level Public IP address on VM) |SNAT using the load balancer |Azure uses a public IP address of the Load Balancer for SNAT |
+| VM with Instance Level Public IP address (with or without load balancer) |SNAT is not used |Azure uses the public IP assigned to the VM |
 
 If you do not want a VM to communicate with endpoints outside of Azure in public IP address space, you can use Network Security Groups (NSG) to block access. Using NSGs is discussed in more detail in [Preventing Public Connectivity](#preventing-public-connectivity).
 

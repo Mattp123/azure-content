@@ -1,19 +1,21 @@
-<properties
-   pageTitle="Azure Load Balancer overview | Microsoft Azure"
-   description="Overview of Azure Load Balancer features, architecture, and implementation. Learn how the load balancer works and leverage it in the cloud."
-   services="load-balancer"
-   documentationCenter="na"
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="" />
-<tags
-   ms.service="load-balancer"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/24/2016"
-   ms.author="sewhee" />
+---
+title: Azure Load Balancer overview | Microsoft Docs
+description: Overview of Azure Load Balancer features, architecture, and implementation. Learn how the load balancer works and leverage it in the cloud.
+services: load-balancer
+documentationcenter: na
+author: kumudd
+manager: timlt
+editor: ''
+
+ms.assetid: 0f313dc0-f007-4cee-b2b9-f542357925a3
+ms.service: load-balancer
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/24/2016
+ms.author: kumud
+---
 
 # Azure Load Balancer overview
 
@@ -29,7 +31,7 @@ All resources in the cloud need a public IP address to be reachable from the Int
 
 ## Azure deployment models
 
-It's important to understand the differences between the Azure classic and Resource Manager [deployment models](../resource-manager-deployment-model.md). Azure Load Balancer is configured differently in each model.
+It's important to understand the differences between the Azure classic and Resource Manager [deployment models](../azure-resource-manager/resource-manager-deployment-model.md). Azure Load Balancer is configured differently in each model.
 
 ### Azure classic deployment model
 
@@ -109,10 +111,9 @@ The load balancer can be managed through Resource Manager-based templates, APIs,
     The maximum number of ports that can be used by the VIP or an instance-level public IP (PIP) is 64,000. This is a TCP standard limitation.
 
 ### Support for multiple load-balanced IP addresses for virtual machines
-
 You can assign more than one load-balanced public IP address to a set of virtual machines. With this ability, you can host multiple SSL websites and/or multiple SQL Server AlwaysOn Availability Group listeners on the same set of virtual machines. For more information, see [Multiple VIPs per cloud service](load-balancer-multivip.md).
 
-[AZURE.INCLUDE [load-balancer-compare-tm-ag-lb-include.md](../../includes/load-balancer-compare-tm-ag-lb-include.md)]
+[!INCLUDE [load-balancer-compare-tm-ag-lb-include.md](../../includes/load-balancer-compare-tm-ag-lb-include.md)]
 
 ## Next steps
 
@@ -121,3 +122,4 @@ You can assign more than one load-balanced public IP address to a set of virtual
 [Internal load balancer overview](load-balancer-internal-overview.md)
 
 [Get started creating an Internet-facing load balancer](load-balancer-get-started-internet-arm-ps.md)
+

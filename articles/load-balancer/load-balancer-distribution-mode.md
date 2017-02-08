@@ -1,20 +1,20 @@
-<properties
-   pageTitle="Configure Load Balancer distribution mode | Microsoft Azure"
-   description="How to configure Azure load balancer distribution mode to support source IP affinity"
-   services="load-balancer"
-   documentationCenter="na"
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="tysonn" />
-<tags
-   ms.service="load-balancer"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/24/2016"
-   ms.author="sewhee" />
+---
+title: Configure Load Balancer distribution mode | Microsoft Docs
+description: How to configure Azure load balancer distribution mode to support source IP affinity
+services: load-balancer
+documentationcenter: na
+author: kumudd
+manager: timlt
 
+ms.assetid: 7df27a4d-67a8-47d6-b73e-32c0c6206e6e
+ms.service: load-balancer
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/24/2016
+ms.author: kumud
+---
 
 # Configure the distribution mode for load balancer
 
@@ -40,10 +40,11 @@ Source IP affinity solves an incompatibility between the Azure Load Balancer and
 
 Another use case scenario is media upload where the data upload happens through UDP but the control plane is achieved through TCP:
 
-- A client first initiates a TCP session to the load balanced public address, gets directed to a specific DIP, this channel is left active to monitor the connection health
-- A new UDP session from the same client computer is initiated to the same load balanced public endpoint, the expectation here is that this connection is also directed to the same DIP endpoint as the previous TCP connection so that media upload can be executed at high throughput while also maintaining a control channel through TCP.
+* A client first initiates a TCP session to the load balanced public address, gets directed to a specific DIP, this channel is left active to monitor the connection health
+* A new UDP session from the same client computer is initiated to the same load balanced public endpoint, the expectation here is that this connection is also directed to the same DIP endpoint as the previous TCP connection so that media upload can be executed at high throughput while also maintaining a control channel through TCP.
 
->[AZURE.NOTE] When a load-balanced set changes (removing or adding a virtual machine), the distribution of client requests is recomputed. You cannot depend on new connections from existing clients ending up at the same server. Additionally, using source IP affinity distribution mode may cause an unequal distribution of traffic. Clients running behind proxies may be seen as one unique client application.
+> [!NOTE]
+> When a load-balanced set changes (removing or adding a virtual machine), the distribution of client requests is recomputed. You cannot depend on new connections from existing clients ending up at the same server. Additionally, using source IP affinity distribution mode may cause an unequal distribution of traffic. Clients running behind proxies may be seen as one unique client application.
 
 ## Configuring Source IP affinity settings for load balancer
 
@@ -51,7 +52,9 @@ For virtual machines, you can use PowerShell to change timeout settings:
 
 Add an Azure endpoint to a Virtual Machine and set load balancer distribution mode
 
-    Get-AzureVM -ServiceName mySvc -Name MyVM1 | Add-AzureEndpoint -Name HttpIn -Protocol TCP -PublicPort 80 -LocalPort 8080 –LoadBalancerDistribution sourceIP | Update-AzureVM
+```powershell
+Get-AzureVM -ServiceName mySvc -Name MyVM1 | Add-AzureEndpoint -Name HttpIn -Protocol TCP -PublicPort 80 -LocalPort 8080 –LoadBalancerDistribution sourceIP | Update-AzureVM
+```
 
 LoadBalancerDistribution can be set to sourceIP for 2-tuple (Source IP, Destination IP) load balancing, sourceIPProtocol for 3-tuple (Source IP, Destination IP, protocol) load balancing, or none if you want the default behavior of 5-tuple load balancing.
 
@@ -83,28 +86,32 @@ If the LoadBalancerDistribution element is not present then the Azure Load balan
 
 If endpoints are part of a load balanced endpoint set, the distribution mode must be set on the load balanced endpoint set:
 
-    Set-AzureLoadBalancedEndpoint -ServiceName MyService -LBSetName LBSet1 -Protocol TCP -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 –LoadBalancerDistribution sourceIP
+```powershell
+Set-AzureLoadBalancedEndpoint -ServiceName MyService -LBSetName LBSet1 -Protocol TCP -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 –LoadBalancerDistribution sourceIP
+```
 
 ### Cloud Service configuration to change distribution mode
 
 You can leverage the Azure SDK for .NET 2.5 (to be released in November) to update your Cloud Service. Endpoint settings for Cloud Services are made in the .csdef. In order to update the load balancer distribution mode for a Cloud Services deployment, a deployment upgrade is required.
 Here is an example of .csdef changes for endpoint settings:
 
-    <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
-      <Endpoints>
-        <InputEndpoint name="input-endpoint-name" protocol="[http|https|tcp|udp]" localPort="local-port-number" port="port-number" certificate="certificate-name" loadBalancerProbe="load-balancer-probe-name" loadBalancerDistribution="sourceIP" />
-      </Endpoints>
-    </WorkerRole>
-    <NetworkConfiguration>
-      <VirtualNetworkSite name="VNet"/>
-      <AddressAssignments>
-    <InstanceAddress roleName="VMRolePersisted">
-      <PublicIPs>
-        <PublicIP name="public-ip-name" idleTimeoutInMinutes="timeout-in-minutes"/>
-      </PublicIPs>
-    </InstanceAddress>
-      </AddressAssignments>
-    </NetworkConfiguration>
+```xml
+<WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
+    <Endpoints>
+    <InputEndpoint name="input-endpoint-name" protocol="[http|https|tcp|udp]" localPort="local-port-number" port="port-number" certificate="certificate-name" loadBalancerProbe="load-balancer-probe-name" loadBalancerDistribution="sourceIP" />
+    </Endpoints>
+</WorkerRole>
+<NetworkConfiguration>
+    <VirtualNetworkSite name="VNet"/>
+    <AddressAssignments>
+<InstanceAddress roleName="VMRolePersisted">
+    <PublicIPs>
+    <PublicIP name="public-ip-name" idleTimeoutInMinutes="timeout-in-minutes"/>
+    </PublicIPs>
+</InstanceAddress>
+    </AddressAssignments>
+</NetworkConfiguration>
+```
 
 ## API example
 
@@ -114,7 +121,7 @@ You can configure the load balancer distribution using the service management AP
 
 #### Request example
 
-    POST https://management.core.windows.net/<subscription-id>/services/hostedservices/<cloudservice-name>/deployments/<deployment-name>?comp=UpdateLbSet    x-ms-version: 2014-09-01
+    POST https://management.core.windows.net/<subscription-id>/services/hostedservices/<cloudservice-name>/deployments/<deployment-name>?comp=UpdateLbSet   x-ms-version: 2014-09-01
     Content-Type: application/xml
 
     <LoadBalancedEndpointList xmlns="http://schemas.microsoft.com/windowsazure" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">

@@ -1,67 +1,72 @@
-<properties 
-	pageTitle="IP addresses used by Application Insights | Microsoft Azure"
-	description="Server firewall exceptions required by Application Insights" 
-	services="application-insights"
-    documentationCenter=".net"
-	authors="alancameronwills" 
-	manager="douge"/>
+---
+title: IP addresses used by Application Insights | Microsoft Docs
+description: Server firewall exceptions required by Application Insights
+services: application-insights
+documentationcenter: .net
+author: alancameronwills
+manager: douge
 
-<tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="11/01/2016" 
-	ms.author="awills"/>
- 
+ms.assetid: 44d989f8-bae9-40ff-bfd5-8343d3e59358
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 11/01/2016
+ms.author: awills
+
+---
 # IP addresses used by Application Insights
+The [Azure Application Insights](app-insights-overview.md) service uses a number of IP addresses. You might need to know these addresses if the app that you are monitoring is hosted behind a firewall.
 
-The [Visual Studio Application Insights](app-insights-overview.md) service uses a number of IP addresses. You might need to know these addresses if the app that you are monitoring is hosted behind a firewall.
-
-> [AZURE.NOTE] Although these addresses are static, it's possible that we will need to change them from time to time.
-
+> [!NOTE]
+> Although these addresses are static, it's possible that we will need to change them from time to time.
+> 
+> 
 
 ## Outgoing ports
-
 You need to open some outgoing ports in your server's firewall to allow the Application Insights SDK and/or Status Monitor to send data to the portal:
 
-|Purpose|URL|IP|Ports
-|---|---|---|---
-| Telemetry|dc.services.visualstudio.com<br/>dc.applicationinsights.microsoft.com| 40.114.241.141<br/>104.45.136.42<br/>40.84.189.107<br/>168.63.242.221|443
-|Live Metrics Stream|rt.services.visualstudio.com<br/>rt.applicationinsights.microsoft.com |variable|443
+| Purpose | URL | IP | Ports |
+| --- | --- | --- | --- |
+| Telemetry |dc.services.visualstudio.com<br/>dc.applicationinsights.microsoft.com |40.114.241.141<br/>104.45.136.42<br/>40.84.189.107<br/>168.63.242.221 |443 |
+| Live Metrics Stream |rt.services.visualstudio.com<br/>rt.applicationinsights.microsoft.com |23.96.28.38<br/>13.92.40.198 |443 |
 
 ## Status Monitor
-
 Status Monitor Configuration - needed only when making changes.
 
-|Purpose | URL | IP | Ports
-|---|---|---|---
-|Configuration| `management.core.windows.net` | | `443`
-|Configuration|`management.azure.com` | | `443`
-|Configuration|`login.windows.net` | | `443`
-|Configuration|	`login.microsoftonline.com` | | `443`
-|Configuration|	`secure.aadcdn.microsoftonline-p.com` | | `443`
-|Configuration|	`auth.gfx.ms` | | `443`
-|Configuration|	`login.live.com` | | `443`
-|Installation| `packages.nuget.org` | | `443`
+| Purpose | URL | IP | Ports |
+| --- | --- | --- | --- |
+| Configuration |`management.core.windows.net` | |`443` |
+| Configuration |`management.azure.com` | |`443` |
+| Configuration |`login.windows.net` | |`443` |
+| Configuration |`login.microsoftonline.com` | |`443` |
+| Configuration |`secure.aadcdn.microsoftonline-p.com` | |`443` |
+| Configuration |`auth.gfx.ms` | |`443` |
+| Configuration |`login.live.com` | |`443` |
+| Installation |`packages.nuget.org` | |`443` |
 
 ## HockeyApp
-
-
-|Purpose|URL|IP|Ports
-|---|---|---|---
-|Crash data|gate.hockeyapp.net|104.45.136.42|80, 443
-
+| Purpose | URL | IP | Ports |
+| --- | --- | --- | --- |
+| Crash data |gate.hockeyapp.net |104.45.136.42 |80, 443 |
 
 ## Availability tests
-
 This is the list of addresses from which [availability web tests](app-insights-monitor-web-app-availability.md) are run. If you want to run web tests on your app, but your web server is restricted to serving specific clients, then you will have to permit incoming traffic from our availability test servers.
 
 Open ports 80 (http) and 443 (https) for incoming traffic from these addresses:
 
 ```
-
+13.106.106.20
+13.106.106.21
+13.106.106.22
+13.106.106.23
+13.106.106.24
+13.106.106.25
+13.106.106.26
+13.106.106.27
+13.106.106.28
+13.106.106.29
 157.55.14.43
 157.55.14.44
 157.55.14.47
@@ -136,16 +141,8 @@ Open ports 80 (http) and 443 (https) for incoming traffic from these addresses:
 65.54.78.54
 65.54.78.57
 65.54.78.58
-65.55.244.15
-65.55.244.16
-65.55.244.17
-65.55.244.18
-65.55.244.37
-65.55.244.40
-65.55.244.42
-65.55.244.44
-65.55.244.46
-65.55.244.47
+65.54.78.59
+65.54.78.60
 65.55.82.77
 65.55.82.78
 65.55.82.81
@@ -185,13 +182,8 @@ Open ports 80 (http) and 443 (https) for incoming traffic from these addresses:
 ```  
 
 ## Data access API
+| Purpose | URI | IP | Ports |
+| --- | --- | --- | --- |
+| API |api.applicationinsights.io<br/>api1.applicationinsights.io<br/>api2.applicationinsights.io<br/>api3.applicationinsights.io<br/>api4.applicationinsights.io<br/>api5.applicationinsights.io |13.82.26.252<br/>40.76.213.73 |80,443 |
+| API docs |dev.applicationinsights.io<br/>dev.applicationinsights.microsoft.com<br/>dev.aisvc.visualstudio.com<br/>www.applicationinsights.io<br/>www.applicationinsights.microsoft.com<br/>www.aisvc.visualstudio.com |13.82.24.149<br/>40.114.82.10 |80,443 |
 
-|Purpose|URI|IP|Ports
-|---|---|---|---
-|API|api.applicationinsights.io<br/>api1.applicationinsights.io<br/>api2.applicationinsights.io<br/>api3.applicationinsights.io<br/>api4.applicationinsights.io<br/>api5.applicationinsights.io|13.82.26.252<br/>40.76.213.73|80,443
-|API docs|dev.applicationinsights.io<br/>dev.applicationinsights.microsoft.com<br/>dev.aisvc.visualstudio.com<br/>www.applicationinsights.io<br/>www.applicationinsights.microsoft.com<br/>www.aisvc.visualstudio.com|13.82.24.149<br/>40.114.82.10|80,443
-
-
-
-
- 

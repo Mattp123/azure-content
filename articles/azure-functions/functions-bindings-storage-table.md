@@ -1,26 +1,26 @@
-<properties
-	pageTitle="Azure Functions Storage Table bindings | Microsoft Azure"
-	description="Understand how to use Azure Storage triggers and bindings in Azure Functions."
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, functions, event processing, dynamic compute, serverless architecture"/>
+---
+title: Azure Functions Storage Table bindings | Microsoft Docs
+description: Understand how to use Azure Storage triggers and bindings in Azure Functions.
+services: functions
+documentationcenter: na
+author: christopheranderson
+manager: erikre
+editor: ''
+tags: ''
+keywords: azure functions, functions, event processing, dynamic compute, serverless architecture
 
-<tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="10/28/2016"
-	ms.author="chrande"/>
+ms.assetid: 65b3437e-2571-4d3f-a996-61a74b50a1c2
+ms.service: functions
+ms.devlang: multiple
+ms.topic: reference
+ms.tgt_pltfrm: multiple
+ms.workload: na
+ms.date: 10/28/2016
+ms.author: chrande
 
+---
 # Azure Functions Storage table bindings
-
-[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
+[!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 This article explains how to configure and code Azure Storage table triggers and bindings in Azure Functions. 
 Azure Functions supports input and output bindings for Azure Storage tables.
@@ -28,45 +28,41 @@ Azure Functions supports input and output bindings for Azure Storage tables.
 The Storage table binding supports the following scenarios:
 
 * **Read a single row in a C# or Node.js function** - Set `partitionKey` and `rowKey`. The `filter` and `take` properties are not used in this scenario.
-
 * **Read multiple rows in a C# function** - The Functions runtime provides an `IQueryable<T>` object bound to the table. Type `T` must derive from `TableEntity` or implement `ITableEntity`. The `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario; you can use the `IQueryable` object to do any filtering required. 
-
 * **Read multiple rows in a Node function** - Set the `filter` and `take` properties. Don't set `partitionKey` or `rowKey`.
-
 * **Write one or more rows in a C# function** - The Functions runtime provides an `ICollector<T>` or `IAsyncCollector<T>` bound to the table, where `T` specifies the schema of the entities you want to add. Typically, type `T` derives from `TableEntity` or implements `ITableEntity`, but it doesn't have to. The `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario.
 
-
-[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
+[!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
-## Storage table input binding
 
+## Storage table input binding
 The Azure Storage table input binding enables you to use a storage table in your function. 
 
 The Storage table input to a function uses the following JSON objects in the `bindings` array of function.json:
 
-    {
-        "name": "<Name of input parameter in function signature>",
-        "type": "table",
-        "direction": "in"
-        "tableName": "<Name of Storage table>",
-        "partitionKey": "<PartitionKey of table entity to read - see below>",
-        "rowKey": "<RowKey of table entity to read - see below>",
-        "take": "<Maximum number of entities to read in Node.js - optional>",
-        "filter": "<OData filter expression for table input in Node.js - optional>",
-        "connection": "<Name of app setting - see below>",
-    }
+```json
+{
+    "name": "<Name of input parameter in function signature>",
+    "type": "table",
+    "direction": "in",
+    "tableName": "<Name of Storage table>",
+    "partitionKey": "<PartitionKey of table entity to read - see below>",
+    "rowKey": "<RowKey of table entity to read - see below>",
+    "take": "<Maximum number of entities to read in Node.js - optional>",
+    "filter": "<OData filter expression for table input in Node.js - optional>",
+    "connection": "<Name of app setting - see below>",
+}
+```
 
 Note the following: 
 
-- Use `partitionKey` and `rowKey` together to read a single entity. These properties are optional.
-- `connection` must contain the name of an app setting that contains a storage connection string. In the Azure portal, the standard 
-editor in the **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing 
-one. To manually create this app setting, see [configure this app setting manually](). 
+* Use `partitionKey` and `rowKey` together to read a single entity. These properties are optional. 
+* `connection` must contain the name of an app setting that contains a storage connection string. In the Azure portal, the standard editor in the **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing one. You can also [configure this app setting manually](functions-how-to-use-azure-function-app-settings.md#application-settings).  
 
 <a name="inputusage"></a>
-## Input usage
 
+## Input usage
 In C# functions, you bind to the input table entity (or entities) by using a named parameter in your function signature, like `<T> <name>`.
 Where `T` is the data type that you want to deserialize the data into, and `paramName` is the name you specified in the 
 [input binding](#input). In Node.js functions, you access the input table entity (or entities) using `context.bindings.<name>`.
@@ -79,10 +75,9 @@ deserialize the table data using that type:
 * Any type that implements `ITableEntity`
 * `IQueryable<T>`
 
-
 <a name="inputsample"></a>
-## Input sample
 
+## Input sample
 Supposed you have the following function.json, which uses a queue trigger to read a single table row. The JSON specifies `PartitionKey` 
 `RowKey`. `"rowKey": "{queueTrigger}"` indicates that the row key comes from the queue message string.
 
@@ -112,13 +107,13 @@ Supposed you have the following function.json, which uses a queue trigger to rea
 
 See the language-specific sample that reads a single table entity.
 
-- [C#](#inputcsharp)
-- [F#](#inputfsharp)
-- [Node.js](#inputnodejs)
+* [C#](#inputcsharp)
+* [F#](#inputfsharp)
+* [Node.js](#inputnodejs)
 
 <a name="inputcsharp"></a>
-### Input sample in C\# 
 
+### Input sample in C# #
 ```csharp
 public static void Run(string myQueueItem, Person personEntity, TraceWriter log)
 {
@@ -135,8 +130,8 @@ public class Person
 ```
 
 <a name="inputfsharp"></a>
-### Input sample in F\# 
 
+### Input sample in F# #
 ```fsharp
 [<CLIMutable>]
 type Person = {
@@ -151,8 +146,8 @@ let Run(myQueueItem: string, personEntity: Person) =
 ```
 
 <a name="inputnodejs"></a>
-### Input sample in Node.js 
 
+### Input sample in Node.js
 ```javascript
 module.exports = function (context, myQueueItem) {
     context.log('Node.js queue trigger function processed work item', myQueueItem);
@@ -162,33 +157,33 @@ module.exports = function (context, myQueueItem) {
 ```
 
 <a name="output"></a>
-## Storage table output binding
 
+## Storage table output binding
 The Azure Storage table output binding enables you to write entities to a Storage table in your function. 
 
 The Storage table output for a function uses the following JSON objects in the `bindings` array of function.json:
 
-    {
-        "name": "<Name of input parameter in function signature>",
-        "type": "table",
-        "direction": "out"
-        "tableName": "<Name of Storage table>",
-        "partitionKey": "<PartitionKey of table entity to write - see below>",
-        "rowKey": "<RowKey of table entity to write - see below>",
-        "connection": "<Name of app setting - see below>",
-    }
+```json
+{
+    "name": "<Name of input parameter in function signature>",
+    "type": "table",
+    "direction": "out",
+    "tableName": "<Name of Storage table>",
+    "partitionKey": "<PartitionKey of table entity to write - see below>",
+    "rowKey": "<RowKey of table entity to write - see below>",
+    "connection": "<Name of app setting - see below>",
+}
+```
 
 Note the following: 
 
-- Use `partitionKey` and `rowKey` together to write a single entity. These properties are optional. You can also
-specify `PartitionKey` and `RowKey` when you create the entity objects in your function code.
-- `connection` must contain the name of an app setting that contains a storage connection string. In the Azure portal, the standard 
-editor in the **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing 
-one. To manually create this app setting, see [configure this app setting manually](). 
+* Use `partitionKey` and `rowKey` together to write a single entity. These properties are optional. You can also
+  specify `PartitionKey` and `RowKey` when you create the entity objects in your function code.
+* `connection` must contain the name of an app setting that contains a storage connection string. In the Azure portal, the standard editor in the **Integrate** tab configures this app setting for you when you create a Storage account or selects an existing one. You can also [configure this app setting manually](functions-how-to-use-azure-function-app-settings.md#application-settings). 
 
 <a name="outputusage"></a>
-## Output usage
 
+## Output usage
 In C# functions, you bind to the table output by using the named `out` parameter in your function signature, like `out <T> <name>`,
 where `T` is the data type that you want to serialize the data into, and `paramName` is the name you specified in the 
 [output binding](#output). In Node.js functions, you access the table output using `context.bindings.<name>`.
@@ -198,10 +193,11 @@ You can serialize objects in Node.js or C# functions. In C# functions, you can a
 * Any type that implements `ITableEntity`
 * `ICollector<T>` (to output multiple entities. See [sample](#outcsharp).)
 * `IAsyncCollector<T>` (async version of `ICollector<T>`)
+* `CloudTable` (using the Azure Storage SDK. See [sample](#readmulti).)
 
 <a name="outputsample"></a>
-## Output sample
 
+## Output sample
 The following *function.json* and *run.csx* example shows how to write multiple table entities.
 
 ```json
@@ -226,13 +222,13 @@ The following *function.json* and *run.csx* example shows how to write multiple 
 
 See the language-specific sample that creates multiple table entities.
 
-- [C#](#outcsharp)
-- [F#](#outfsharp)
-- [Node.js](#outnodejs)
+* [C#](#outcsharp)
+* [F#](#outfsharp)
+* [Node.js](#outnodejs)
 
 <a name="outcsharp"></a>
-### Output sample in C\# 
 
+### Output sample in C# #
 ```csharp
 public static void Run(string input, ICollector<Person> tableBinding, TraceWriter log)
 {
@@ -258,8 +254,8 @@ public class Person
 
 ```
 <a name="outfsharp"></a>
-### Output sample in F\# 
 
+### Output sample in F# #
 ```fsharp
 [<CLIMutable>]
 type Person = {
@@ -278,8 +274,8 @@ let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
 ```
 
 <a name="outnodejs"></a>
-### Output sample in Node.js
 
+### Output sample in Node.js
 ```javascript
 module.exports = function (context) {
 
@@ -297,8 +293,8 @@ module.exports = function (context) {
 ```
 
 <a name="readmulti"></a>
-## Sample: Read multiple table entities in C# 
 
+## Sample: Read multiple table entities in C#  #
 The following *function.json* and C# code example reads entities for a partition key that is specified in the queue message.
 
 ```json
@@ -345,5 +341,5 @@ public class Person : TableEntity
 ```
 
 ## Next steps
+[!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
 
-[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)] 

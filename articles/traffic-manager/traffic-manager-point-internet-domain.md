@@ -1,21 +1,21 @@
-<properties
-    pageTitle="Point a company Internet domain to a Traffic Manager domain name | Microsoft Azure"
-    description="This article will help you point your company domain name to a Traffic Manager domain name."
-    services="traffic-manager"
-    documentationCenter=""
-    authors="sdwheeler"
-    manager="carmonm"
-    editor=""
-/>
-<tags
-    ms.service="traffic-manager"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="10/11/2016"
-    ms.author="sewhee"
-/>
+---
+title: Point a company Internet domain to a Traffic Manager domain name | Microsoft Docs
+description: This article will help you point your company domain name to a Traffic Manager domain name.
+services: traffic-manager
+documentationcenter: ''
+author: kumudd
+manager: timlt
+editor: ''
+
+ms.assetid: 29822946-2d45-4434-ba47-fc180a445cc3
+ms.service: traffic-manager
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/11/2016
+ms.author: kumud
+---
 
 # Point a company Internet domain to an Azure Traffic Manager domain
 
@@ -27,10 +27,11 @@ For example, to point name www.contoso.com to the Traffic Manager DNS name conto
 
 All traffic requests to *www.contoso.com* get directed to *contoso.trafficmanager.net*.
 
->[AZURE.IMPORTANT] You cannot point a second-level domain, such as *contoso.com*, to the Traffic Manager domain. DNS protocol standards do not allow CNAME records for second-level domain names.
+> [!IMPORTANT]
+> You cannot point a second-level domain, such as *contoso.com*, to the Traffic Manager domain. DNS protocol standards do not allow CNAME records for second-level domain names.
 
 ## Next steps
 
-- [Traffic Manager routing methods](traffic-manager-routing-methods.md)
-- [Traffic Manager - Disable, enable or delete a profile](disable-enable-or-delete-a-profile.md)
-- [Traffic Manager - Disable or enable an endpoint](disable-or-enable-an-endpoint.md)
+* [Traffic Manager routing methods](traffic-manager-routing-methods.md)
+* [Traffic Manager - Disable, enable or delete a profile](disable-enable-or-delete-a-profile.md)
+* [Traffic Manager - Disable or enable an endpoint](disable-or-enable-an-endpoint.md)

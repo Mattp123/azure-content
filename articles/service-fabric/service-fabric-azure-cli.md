@@ -1,24 +1,23 @@
-<properties
-   pageTitle="Interacting with Service Fabric clusters using CLI | Microsoft Azure"
-   description="How to use Azure CLI to interact with a Service Fabric cluster"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="mani-ramaswamy"
-   manager="timlt"
-   editor=""/>
+---
+title: Interacting with Service Fabric clusters using CLI | Microsoft Docs
+description: How to use Azure CLI to interact with a Service Fabric cluster
+services: service-fabric
+documentationcenter: .net
+author: mani-ramaswamy
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotNet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/24/2016"
-   ms.author="subramar"/>
+ms.assetid: c3ec8ff3-3b78-420c-a7ea-0c5e443fb10e
+ms.service: service-fabric
+ms.devlang: dotNet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/24/2016
+ms.author: subramar
 
-
+---
 # Using the Azure CLI to interact with a Service Fabric Cluster
-
 You can interact with Service Fabric cluster from Linux machines using the Azure CLI on Linux.
 
 The first step is get the latest version of the CLI from the git rep and set it up in your path using the following commands:
@@ -79,41 +78,38 @@ Replace the PublicIPorFQDN tag with the real IP or FQDN as appropriate. When con
 
 You can use PowerShell or CLI to interact with your Linux Service Fabric Cluster created through the Azure portal. 
 
-**Caution:** These clusters aren’t secure, thus, you may be opening up your one-box by adding the public IP address in the cluster manifest.
-
-
+> [!WARNING]
+> These clusters aren’t secure, thus, you may be opening up your one-box by adding the public IP address in the cluster manifest.
 
 ## Using the Azure CLI to connect to a Service Fabric Cluster
-
 The following Azure CLI commands describe how to connect to a secure cluster. The certificate details must match a certificate on the cluster nodes.
 
 ```
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert
 ```
- 
+
 If your certificate has Certificate Authorities (CAs), you need to add the --ca-cert-path parameter like the following example: 
 
 ```
  azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --ca-cert-path /tmp/ca1,/tmp/ca2 
 ```
 If you have multiple CAs, use a comma as the delimiter.
- 
-If your Common Name in the certificate does not match the connection endpoint, you could use the parameter `--strict-ssl` to bypass the verification as shown in the following command: 
+
+If your Common Name in the certificate does not match the connection endpoint, you could use the parameter `--strict-ssl-false` to bypass the verification as shown in the following command: 
 
 ```
-azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl false 
+azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl-false 
 ```
- 
-If you would like to skip the CA verification, you could add the --reject-unauthorized parameter as shown in the following command: 
+
+If you would like to skip the CA verification, you could add the --reject-unauthorized-false parameter as shown in the following command: 
 
 ```
-azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized false 
+azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized-false 
 ```
- 
+
 After you connect, you should be able to run other CLI commands to interact with the cluster. 
 
 ## Deploying your Service Fabric application
-
 Execute the following commands to copy, register, and start the service fabric application:
 
 ```
@@ -124,7 +120,6 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 
 
 ## Upgrading your application
-
 The process is similar to the [process in Windows](service-fabric-application-upgrade-tutorial-powershell.md)).
 
 Build, copy, register, and create your application from project root directory. If your application instance is named fabric:/MySFApp, and the type is MySFApp, the commands would be as follows:
@@ -152,10 +147,27 @@ Now, you can start the application upgrade with the following command:
 
 You can now monitor the application upgrade using SFX. In a few minutes, the application would have been updated.  You can also try an updated app with an error and check the auto rollback functionality in service fabric.
 
+## Converting from PFX to PEM and vice versa
+
+You might need to install a certificate in your local machine (with Windows or Linux) to access secure clusters that may be in a different environment. For example, while accessing a secured Linux cluster from a Windows machine and vice versa you may need to convert your certificate from PFX to PEM and vice versa. 
+
+To convert from a PEM file to a PFX file, use the following command:
+
+```bash
+openssl pkcs12 -export -out certificate.pfx -inkey mycert.pem -in mycert.pem -certfile mycert.pem
+```
+
+To convert from a PFX file to a PEM file, use the following command:
+
+```bash
+openssl pkcs12 -in certificate.pfx -out mycert.pem -nodes
+```
+
+Refer to [OpenSSL documentation](https://www.openssl.org/docs/man1.0.1/apps/pkcs12.html) for details.
+
+<a id="troubleshooting"></a>
 ## Troubleshooting
-
 ### Copying of the application package does not succeed
-
 Check if `openssh` is installed. By default, Ubuntu Desktop doesn't have it installed. Install it using the following command:
 
 ```
@@ -182,6 +194,7 @@ If the problem still persists, try increasing the number of ssh sessions by exec
 Using keys for ssh authentication (as opposed to passwords) isn't yet supported (since the platform uses ssh to copy packages), so use password authentication instead.
 
 
-## Next steps
 
+## Next steps
 Set up the development environment and deploy a Service Fabric application to a Linux cluster.
+

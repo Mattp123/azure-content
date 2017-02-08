@@ -1,21 +1,21 @@
-<properties
-    pageTitle="Manage Azure Traffic Manager profiles | Microsoft Azure"
-    description="This article helps you create, disable, enable, delete, and view the history of a Azure Traffic Manager profile."
-    services="traffic-manager"
-    documentationCenter=""
-    authors="sdwheeler"
-    manager="carmonm"
-    editor=""
-/>
-<tags
-    ms.service="traffic-manager"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="10/11/2016"
-    ms.author="sewhee"
-/>
+---
+title: Manage Azure Traffic Manager profiles | Microsoft Docs
+description: This article helps you create, disable, enable, delete, and view the history of a Azure Traffic Manager profile.
+services: traffic-manager
+documentationcenter: ''
+author: kumudd
+manager: timlt
+editor: ''
+
+ms.assetid: f06e0365-0a20-4d08-b7e1-e56025e64f66
+ms.service: traffic-manager
+ms.devlang: na
+ms.topic: hero-article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/11/2016
+ms.author: kumud
+---
 
 # Manage an Azure Traffic Manager profile
 
@@ -28,14 +28,12 @@ You can quickly create a Traffic Manager profile by using Quick Create in the Az
 ### To create a Traffic Manager profile
 
 1. **Deploy your cloud services and websites to your production environment.** For more information about cloud services, see [Cloud Services](http://go.microsoft.com/fwlink/p/?LinkId=314074). For more information about websites, see [Websites](http://go.microsoft.com/fwlink/p/?LinkId=393327).
-
 2. **Log in to the Azure classic portal.** Click **New** on the lower left of the portal, click **Network Services > Traffic Manager**, and then click **Quick Create** to begin configuring your profile.
 3. **Configure the DNS prefix.** Give your traffic manager profile a unique DNS prefix name. You can specify only the prefix for a Traffic Manager domain name.
 4. **Select the subscription.** Select the appropriate Azure subscription. Each profile is associated with a single subscription. If you only have one subscription, this option does not appear.
 5. **Select the traffic routing method.** Select the traffic routing method in **traffic routing Policy**. For more information about traffic routing methods, see [About Traffic Manager traffic routing methods](traffic-manager-routing-methods.md).
 6. **Click "Create" to create the profile**. When the profile configuration is completed, you can locate your profile in the Traffic Manager pane in the Azure classic portal.
 7. **Configure endpoints, monitoring, and additional settings in the Azure classic portal.** Using Quick Create only configures basic settings. It is necessary to configure additional settings such as the list of endpoints and the endpoint failover order.
-
 
 ## Disable, enable, or delete a profile
 
@@ -71,15 +69,15 @@ You can view the change history for your Traffic Manager profile in the Azure cl
 2. On the Management Services page, click **Operation Logs**.
 3. On the Operation Logs page, you can filter to view the change history for your Traffic Manager profile. After selecting your filtering options, click the checkmark to view the results.
 
-   - To view the changes for all your profiles, select your subscription and time range and then select **Traffic Manager** from the **Type** shortcut menu.
-   - To filter by profile name, type the name of the profile in the **Service Name** field or select it from the shortcut menu.
-   - To view details for each individual change, select the row with the change that you want to view, and then click **Details** at the bottom of the page. In the **Operation Details** window, you can view the XML representation of the API object that was created or updated as part of the operation.
+   * To view the changes for all your profiles, select your subscription and time range and then select **Traffic Manager** from the **Type** shortcut menu.
+   * To filter by profile name, type the name of the profile in the **Service Name** field or select it from the shortcut menu.
+   * To view details for each individual change, select the row with the change that you want to view, and then click **Details** at the bottom of the page. In the **Operation Details** window, you can view the XML representation of the API object that was created or updated as part of the operation.
 
 ## Next steps
 
-- [Add an endpoint](traffic-manager-endpoints.md)
-- [Configure failover routing method](traffic-manager-configure-failover-routing-method.md)
-- [Configure round robin routing method](traffic-manager-configure-round-robin-routing-method.md)
-- [Configure performance routing method](traffic-manager-configure-performance-routing-method.md)
-- [Point a company Internet domain to a Traffic Manager domain name](traffic-manager-point-internet-domain.md)
-- [Troubleshooting Traffic Manager degraded state](traffic-manager-troubleshooting-degraded.md)
+* [Add an endpoint](traffic-manager-endpoints.md)
+* [Configure failover routing method](traffic-manager-configure-failover-routing-method.md)
+* [Configure round robin routing method](traffic-manager-configure-round-robin-routing-method.md)
+* [Configure performance routing method](traffic-manager-configure-performance-routing-method.md)
+* [Point a company Internet domain to a Traffic Manager domain name](traffic-manager-point-internet-domain.md)
+* [Troubleshooting Traffic Manager degraded state](traffic-manager-troubleshooting-degraded.md)

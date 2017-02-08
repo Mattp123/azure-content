@@ -1,21 +1,21 @@
+---
+title: Internal load balancer Overview | Microsoft Docs
+description: Overview for internal load balancer and its features.How a load balancer works for Azure and possible scenarios to configure internal endpoints
+services: load-balancer
+documentationcenter: na
+author: kumudd
+manager: timlt
+editor: tysonn
 
-<properties
-   pageTitle="Internal load balancer Overview | Microsoft Azure"
-   description="Overview for internal load balancer and its features.How a load balancer works for Azure and possible scenarios to configure internal endpoints"
-   services="load-balancer"
-   documentationCenter="na"
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="tysonn" />
-<tags
-   ms.service="load-balancer"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/24/2016"
-   ms.author="sewhee" />
-
+ms.assetid: 36065bfe-0ef1-46f9-a9e1-80b229105c85
+ms.service: load-balancer
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/24/2016
+ms.author: kumud
+---
 
 # Internal load balancer overview
 
@@ -27,14 +27,13 @@ Azure Internal Load Balancing (ILB) provides load balancing between virtual mach
 
 ILB enables the following types of load balancing:
 
-- Within a cloud service, from virtual machines to a set of virtual machines that reside within the same cloud service (see Figure 1).
-- Within a virtual network, from virtual machines in the virtual network to a set of virtual machines that reside within the same cloud service of the virtual network (see Figure 2).
-- For a cross-premises virtual network, from on-premises computers to a set of virtual machines that reside within the same cloud service of the virtual network (see Figure 3).
-- Internet-facing, multi-tier applications in which the back-end tiers are not Internet-facing but require load balancing for traffic from the Internet-facing tier.
-- Load balancing for LOB applications hosted in Azure without requiring additional load balancer hardware or software. Including on-premises servers in the set of computers whose traffic is load balanced.
+* Within a cloud service, from virtual machines to a set of virtual machines that reside within the same cloud service (see Figure 1).
+* Within a virtual network, from virtual machines in the virtual network to a set of virtual machines that reside within the same cloud service of the virtual network (see Figure 2).
+* For a cross-premises virtual network, from on-premises computers to a set of virtual machines that reside within the same cloud service of the virtual network (see Figure 3).
+* Internet-facing, multi-tier applications in which the back-end tiers are not Internet-facing but require load balancing for traffic from the Internet-facing tier.
+* Load balancing for LOB applications hosted in Azure without requiring additional load balancer hardware or software. Including on-premises servers in the set of computers whose traffic is load balanced.
 
 ## Internet facing multi-tier applications
-
 
 The web tier has Internet facing endpoints for Internet clients and is part of a load-balanced set. The load balancer  distributes incoming traffic from web clients for TCP port 443 (HTTPS) to the web servers.
 
@@ -42,15 +41,13 @@ The database servers are behind an ILB endpoint which the web servers use for st
 
 The following image shows the Internet facing multi-tier application within the same cloud service.
 
-Figure 1 - Internet facing multi-tier application
-
 ![Internal load balancing single cloud service](./media/load-balancer-internal-overview/IC736321.png)
+
+Figure 1 - Internet facing multi-tier application
 
 Another possible use for a multi-tier application is when the ILB deployed to a different cloud service than the one consuming the service for the ILB.
 
-Cloud services using the same virtual network will have access to the ILB endpoint.
-
-Figure 2 shows front-end web servers are in a different cloud service from the database back-end and using the ILB endpoint within the same virtual network.
+Cloud services using the same virtual network will have access to the ILB endpoint. The following image shows front-end web servers are in a different cloud service from the database back-end and using the ILB endpoint within the same virtual network.
 
 ![Internal load balancing between cloud services](./media/load-balancer-internal-overview/IC744147.png)
 
@@ -72,7 +69,6 @@ Another scenario for the LOB is to have a site to site VPN to the virtual networ
 
 Figure 4 - On-premises network traffic routed to the ILB endpoint
 
-
 ## Next Steps
 
 [Azure Resource Manager support for Azure Load Balancer](load-balancer-arm.md)
@@ -84,4 +80,3 @@ Figure 4 - On-premises network traffic routed to the ILB endpoint
 [Configure a Load balancer distribution mode](load-balancer-distribution-mode.md)
 
 [Configure idle TCP timeout settings for your load balancer](load-balancer-tcp-idle-timeout.md)
-

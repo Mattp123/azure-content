@@ -1,21 +1,21 @@
-﻿<properties
-    pageTitle="Configure Traffic Manager routing methods | Microsoft Azure"
-    description="This article explains how to configures different routing methods in Traffic Manager"
-    services="traffic-manager"
-    documentationCenter=""
-    authors="sdwheeler"
-    manager="carmonm"
-    editor=""
-/>
-<tags
-    ms.service="traffic-manager"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-   ms.date="10/18/2016"
-   ms.author="sewhee" />
-<!-- repub for nofollow -->
+---
+title: Configure Traffic Manager routing methods | Microsoft Docs
+description: This article explains how to configures different routing methods in Traffic Manager
+services: traffic-manager
+documentationcenter: ''
+author: kumudd
+manager: timlt
+editor: ''
+
+ms.assetid: 6dca6de1-18f7-4962-bd98-6055771fab22
+ms.service: traffic-manager
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/18/2016
+ms.author: kumud
+---
 
 # Configure Traffic Manager routing methods
 
@@ -23,9 +23,9 @@ Azure Traffic Manager provides three routing methods that control how traffic is
 
 There are three traffic routing methods available in Traffic Manager:
 
-- **Priority:** Select 'Priority' when you want to use a primary service endpoint and provide backups in case the primary is unavailable.
-- **Weighted:** Select 'Weighted' when you want to distribute traffic across a set of endpoints, either evenly or according to weights, which you define.
-- **Performance:** Select 'Performance' when you have endpoints in different geographic locations and you want end users to use the "closest" endpoint in terms of the lowest network latency.
+* **Priority:** Select 'Priority' when you want to use a primary service endpoint and provide backups in case the primary is unavailable.
+* **Weighted:** Select 'Weighted' when you want to distribute traffic across a set of endpoints, either evenly or according to weights, which you define.
+* **Performance:** Select 'Performance' when you have endpoints in different geographic locations and you want end users to use the "closest" endpoint in terms of the lowest network latency.
 
 ## Configure Priority routing method
 
@@ -48,7 +48,8 @@ A common pattern for service failover is to send traffic to a primary service an
 
 A common traffic routing method pattern is to provide a set of identical endpoints, which include cloud services and websites, and send traffic to each in a round-robin fashion. The following steps outline how to configure this type of traffic routing method.
 
->[AZURE.NOTE] Azure Websites already provide round-robin load balancing functionality for websites within a datacenter (also known as a region). Traffic Manager allows you to specify round-robin traffic routing method for websites in different datacenters.
+> [!NOTE]
+> Azure Websites already provide round-robin load balancing functionality for websites within a datacenter (also known as a region). Traffic Manager allows you to specify round-robin traffic routing method for websites in different datacenters.
 
 1. In the Azure classic portal, in the left pane, click the **Traffic Manager** icon to open the Traffic Manager pane.
 2. In the Traffic Manager pane, locate the Traffic Manager profile that contains the settings that you want to modify. To open the profile settings page, click the arrow to the right of the profile name.
@@ -68,7 +69,7 @@ The Performance traffic routing method allows you to direct traffic to the endpo
 2. In the Traffic Manager pane, locate the Traffic Manager profile that contains the settings that you want to modify. To open the profile settings page, click the arrow to the right of the profile name.
 3. On the page for your profile, click **Endpoints** at the top of the page and verify that the service endpoints that you want to include in your configuration are present.
 4. On the page for your profile, click **Configure** at the top to open the configuration page.
-5. For **traffic routing method settings**, verify that the traffic routing method is **Performance*. If it's not, click **Performance** in the dropdown list.
+5. For **traffic routing method settings**, verify that the traffic routing method is **Performance**. If it's not, click **Performance** in the dropdown list.
 6. Verify that the **Monitoring Settings** are configured appropriately. Monitoring ensures that endpoints that are offline are not sent traffic. To monitor endpoints, you must specify a path and filename. A forward slash "/" is a valid entry for the relative path and implies that the file is in the root directory (default).
 7. After you complete your configuration changes, click **Save** at the bottom of the page.
 8. Test the changes in your configuration.
@@ -82,3 +83,4 @@ The Performance traffic routing method allows you to direct traffic to the endpo
 * [Point a company Internet domain to a Traffic Manager domain](traffic-manager-point-internet-domain.md)
 * [Manage Traffic Manager endpoints](traffic-manager-manage-endpoints.md)
 * [Troubleshooting Traffic Manager degraded state](traffic-manager-troubleshooting-degraded.md)
+

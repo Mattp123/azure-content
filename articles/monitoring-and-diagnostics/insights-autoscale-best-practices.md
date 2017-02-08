@@ -1,38 +1,36 @@
-<properties
-	pageTitle="Best practices for Azure Monitor autoscaling. | Microsoft Azure"
-	description="Learn principles to effectively use autoscaling in Azure Monitor."
-	authors="kamathashwin"
-	manager="carolz"
-	editor=""
-	services="monitoring-and-diagnostics"
-	documentationCenter="monitoring-and-diagnostics"/>
+---
+title: Best practices for autoscaling | Microsoft Docs
+description: Learn principles to effectively autoscale Virtual Machines, Virtual Machine Scale Sets, and Cloud Services.
+author: kamathashwin
+manager: carmonm
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-	ms.service="monitoring-and-diagnostics"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="10/20/2016"
-	ms.author="ashwink"/>
+ms.assetid: 9fa2b94b-dfa5-4106-96ff-74fd1fba4657
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 01/23/2016
+ms.author: ashwink
 
-# Best practices for Azure Monitor autoscaling
-
-The following sections in this document help you understand the best practices for autoscale-in Azure. After reviewing this information, you'll be better able to effectively use autoscale in your Azure infrastructure.
+---
+# Best practices Autoscaling Virtual
+This article teaches best practices to autoscale in Azure. It relates to Virtual Machines, Virtual Machine Scale Sets and Cloud Services.  Other Azure services used different scaling methods.
 
 ## Autoscale concepts
-
-- A resource can have only *one* autoscale setting
-- An autoscale setting can have one or more profiles and each profile can have one or more autoscale rules.
-- An autoscale setting scales instances horizontally, which is *out* by increasing the instances and *in* by decreasing the number of instances.
- An autoscale setting has a maximum, minimum, and default value of instances.
-- An autoscale job always reads the associated metric to scale by, checking if it has crossed the configured threshold for scale-out or scale-in. You can view a list of metrics that autoscale can scale by at [Azure Monitor autoscaling common metrics](insights-autoscale-common-metrics.md).
-- All thresholds are calculated at an instance level. For example, "scale out by 1 instance when average CPU > 80% when instance count is 2", means scale-out when the average CPU across all instances is greater than 80%.
-- You always receive failure notifications via email. Specifically, the owner, contributor, and readers of the target resource receive email. You also always receive a *recovery* email when autoscale recovers from a failure and starts functioning normally.
-- You can opt-in to receive a successful scale action notification via email and webhooks.
+* A resource can have only *one* autoscale setting
+* An autoscale setting can have one or more profiles and each profile can have one or more autoscale rules.
+* An autoscale setting scales instances horizontally, which is *out* by increasing the instances and *in* by decreasing the number of instances.
+  An autoscale setting has a maximum, minimum, and default value of instances.
+* An autoscale job always reads the associated metric to scale by, checking if it has crossed the configured threshold for scale-out or scale-in. You can view a list of metrics that autoscale can scale by at [Azure Monitor autoscaling common metrics](insights-autoscale-common-metrics.md).
+* All thresholds are calculated at an instance level. For example, "scale out by 1 instance when average CPU > 80% when instance count is 2", means scale-out when the average CPU across all instances is greater than 80%.
+* You always receive failure notifications via email. Specifically, the owner, contributor, and readers of the target resource receive email. You also always receive a *recovery* email when autoscale recovers from a failure and starts functioning normally.
+* You can opt-in to receive a successful scale action notification via email and webhooks.
 
 ## Autoscale best practices
-
 Use the following best practices as you use autoscale.
 
 ### Ensure the maximum and minimum values are different and have an adequate margin between them
@@ -45,7 +43,7 @@ If you manually update the instance count to a value above or below the maximum,
 If you use only one part of the combination, autoscale scale-in that single out, or in, until the maximum, or minimum, is reached.
 
 ### Do not switch between the Azure portal and the Azure classic portal when managing Autoscale
-For Cloud Services and App Services (Web Apps), use the Azure portal (portal.azure.com) to create and manage autoscale settings. For Virtual Machine Scale Sets use PoSH, CLI or REST API to create and manage autoscale setting. Do not switch between the Azure classic portal (manage.windowsazure.com) and the Azure portal (portal.azure.com) when managing autoscale configurations. The Azure classic portal and its underlying backend has limitations. Move to the Azure portal to manage autoscale using a graphical user interface. The options are to use the autoscale PowerShell, CLI or REST API (via Azure Resource Explorer).
+For Cloud Services and App Services (Web Apps), use the Azure portal (portal.azure.com) to create and manage autoscale settings. For Virtual Machine Scale Sets use PowerShell, CLI or REST API to create and manage autoscale setting. Do not switch between the Azure classic portal (manage.windowsazure.com) and the Azure portal (portal.azure.com) when managing autoscale configurations. The Azure classic portal and its underlying backend has limitations. Move to the Azure portal to manage autoscale using a graphical user interface. The options are to use the autoscale PowerShell, CLI or REST API (via Azure Resource Explorer).
 
 ### Choose the appropriate statistic for your diagnostics metric
 For diagnostics metrics, you can choose among *Average*, *Minimum*, *Maximum* and *Total* as a metric to scale by. The most common statistic is *Average*.
@@ -55,10 +53,10 @@ We recommend carefully choosing different thresholds for scale-out and scale-in 
 
 We *do not recommend* autoscale settings like the examples below with the same or very similar threshold values for out and in conditions:
 
-- Increase instances by 1 count when Thread Count <= 600
-- Decrease instances by 1 count when Thread Count >= 600
+* Increase instances by 1 count when Thread Count <= 600
+* Decrease instances by 1 count when Thread Count >= 600
 
-Let's look at an example of what can lead to a behavior that may seem confusing. Cosider the following sequence.
+Let's look at an example of what can lead to a behavior that may seem confusing. Consider the following sequence.
 
 1. Assume there are 2 instances to begin with and then the average number of threads per instance grows to 625.
 2. Autoscale scales out adding a 3rd instance.
@@ -66,12 +64,12 @@ Let's look at an example of what can lead to a behavior that may seem confusing.
 4. Before scaling down, autoscale tries to estimate what the final state will be if it scaled in. For example, 575 x  3 (current instance count) = 1,725 / 2 (final number of instances when scaled down) = 862.5 threads. This means autoscale would have to immediately scale-out again even after it scaled in, if the average thread count remains the same or even falls only a small amount. However, if it scaled up again, the whole process would repeat, leading to an infinite loop.
 5. To avoid this situation (termed "flapping"), autoscale does not scale down at all. Instead, it skips and reevaluates the condition again the next time the service's job executes. This could confuse many people because autoscale wouldn't appear to work when the average thread count was 575.
 
-Estimation during a scale-in is intended to avoid "flappy" situations. You should keep this behavior in mind when you choose the same thresholds for scale-out and in.
+Estimation during a scale-in is intended to avoid "flapping" situations, where scale-in and scale-out actions continually go back and forth. Keep this behavior in mind when you choose the same thresholds for scale-out and in.
 
 We recommend choosing an adequate margin between the scale-out and in thresholds. As an example, consider the following better rule combination.
 
-- Increase instances by 1 count when CPU%  >= 80
-- Decrease instances by 1 count when CPU% <= 60
+* Increase instances by 1 count when CPU%  >= 80
+* Decrease instances by 1 count when CPU% <= 60
 
 In this case  
 
@@ -86,8 +84,8 @@ In this case
 
 Let's illustrate it with an example to ensure you understand the behavior better.
 
-- Increase instances by 1 count when Storage Queue message count >= 50
-- Decrease instances by 1 count when Storage Queue message count <= 10
+* Increase instances by 1 count when Storage Queue message count >= 50
+* Decrease instances by 1 count when Storage Queue message count <= 10
 
 Consider the following sequence:
 
@@ -98,7 +96,6 @@ Consider the following sequence:
 5. Now the number of messages in the queue gets smaller. With 3 instances, the first scale-in action happens when the total messages in all queues add up to 30 because 30/3 = 10 messages per instance, which is the scale-in threshold.
 
 ### Considerations for scaling when multiple profiles are configured in an autoscale setting
-
 In an autoscale setting, you can choose a default profile, which is always applied without any dependency on schedule or time, or you can choose a recurring profile or a profile for a fixed period with a date and time range.
 
 When autoscale service processes them, it always checks in the following order:
@@ -127,15 +124,15 @@ On *scale-in*, autoscale require all rules to be met.
 
 To illustrate, assume that you have the following 4 autoscale rules:
 
-- If CPU < 30 %, scale-in by 1
-- If Memory < 50%, scale-in by 1
-- If CPU > 75%, scale-out by 1
-- If Memory > 75%, scale-out by 1
+* If CPU < 30 %, scale-in by 1
+* If Memory < 50%, scale-in by 1
+* If CPU > 75%, scale-out by 1
+* If Memory > 75%, scale-out by 1
 
 Then the follow occurs:
 
-- If CPU is 76% and Memory is 50%, we scale-out.
-- If CPU is 50% and Memory is 76% we scale-out.
+* If CPU is 76% and Memory is 50%, we scale-out.
+* If CPU is 50% and Memory is 76% we scale-out.
 
 On the other hand, if CPU is 25% and memory is 51% autoscale does **not** scale-in. In order to scale-in, CPU must be 29% and Memory 49%.
 
@@ -145,7 +142,7 @@ The default instance count is important autoscale scales your service to that co
 ### Configure autoscale notifications
 Autoscale notifies the administrators and contributors of the resource by email if any of the following conditions occur:
 
-- autoscale service fails to take an action.
-- Metrics are not available for autoscale service to make a scale decision.
-- Metrics are available (recovery) again to make a scale decision.
-In addition to the conditions above, you can configure email or webhook notifications to get notified for successful scale actions.
+* autoscale service fails to take an action.
+* Metrics are not available for autoscale service to make a scale decision.
+* Metrics are available (recovery) again to make a scale decision.
+  In addition to the conditions above, you can configure email or webhook notifications to get notified for successful scale actions.

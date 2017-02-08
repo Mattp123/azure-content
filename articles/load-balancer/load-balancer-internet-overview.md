@@ -1,21 +1,21 @@
+---
+title: Internet facing load balancer overview | Microsoft Docs
+description: Overview for Internet facing load balancer and its features. How a load balancer works for Azure using virtual machines and cloud services.
+services: load-balancer
+documentationcenter: na
+author: kumudd
+manager: timlt
+editor: tysonn
 
-<properties
-   pageTitle="Internet facing load balancer overview | Microsoft Azure "
-   description="Overview for Internet facing load balancer and its features. How a load balancer works for Azure using virtual machines and cloud services."
-   services="load-balancer"
-   documentationCenter="na"
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="tysonn" />
-<tags
-   ms.service="load-balancer"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/24/2016"
-   ms.author="sewhee" />
-
+ms.assetid: 529b37aa-a45c-41d1-8877-fee8cc1fa375
+ms.service: load-balancer
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/24/2016
+ms.author: kumud
+---
 
 # Internet facing load balancer overview
 
@@ -23,7 +23,7 @@ Azure load balancer maps the public IP address and port number of incoming traff
 
 For a cloud service that contains instances of web roles or worker roles, you can define a public endpoint in the service definition (.csdef) file.
 
-The _servicedefinition.csdef_ file contains the endpoint configuration and when you have multiple role instances for a web or worker role deployment, the load balancer will be setup for it. The way to add instances to your cloud deployment is changing the instance count on the service configuration file (.csfg).
+The *servicedefinition.csdef* file contains the endpoint configuration and when you have multiple role instances for a web or worker role deployment, the load balancer will be setup for it. The way to add instances to your cloud deployment is changing the instance count on the service configuration file (.csfg).
 
 The following figure shows a load-balanced endpoint for encrypted web traffic that is shared among three virtual machines for the public and private TCP port of 443. These three virtual machines are in a load-balanced set.
 
